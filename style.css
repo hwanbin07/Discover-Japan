@@ -1,0 +1,487 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --text: #252b28;
+    --muted: #777777;
+    --accent: #a94e40;
+    --background: #fcfbf8;
+    --border: #e7e4dd;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: var(--background);
+    line-height: 1.7;
+}
+
+/* Main photograph */
+.hero {
+    position: relative;
+    height: 55vh;
+    min-height: 360px;
+    max-height: 620px;
+    margin: 24px 24px 0;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #dedbd4;
+}
+
+.hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.35s ease;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.05)
+    );
+    pointer-events: none;
+}
+
+.hero-content {
+    position: absolute;
+    left: 6%;
+    bottom: 12%;
+    color: white;
+}
+
+.eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.hero-content .eyebrow {
+    color: #f4d7bd;
+}
+
+.hero-content h1 {
+    font-size: clamp(42px, 7vw, 86px);
+    line-height: 1.15;
+    letter-spacing: 4px;
+    margin: 8px 0;
+}
+
+.hero-content p:last-child {
+    font-size: 15px;
+}
+
+/* Four main buttons */
+.container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.category-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+}
+
+.category-button {
+    width: 100%;
+    min-height: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.category-button:hover,
+.category-button:focus-visible {
+    background: #f0ece4;
+    color: var(--accent);
+}
+
+.button-icon {
+    font-size: 27px;
+    line-height: 1.3;
+}
+
+/* NEXT dropdown menu */
+.next-container {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 5px);
+    right: 8px;
+    width: 155px;
+    padding: 7px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+}
+
+.next-container:hover .dropdown-menu,
+.next-container:focus-within .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover,
+.dropdown-menu button:focus-visible {
+    background: #f4eee6;
+    color: var(--accent);
+}
+
+/* Welcome text */
+.welcome {
+    padding: 65px 12px;
+    text-align: center;
+}
+
+.welcome h2 {
+    margin: 8px 0 12px;
+    font-size: clamp(25px, 3vw, 36px);
+}
+
+.welcome > p:last-child {
+    max-width: 580px;
+    margin: 0 auto;
+    color: var(--muted);
+}
+
+/* Information panel */
+.info-panel {
+    position: relative;
+    width: 95%;
+    max-width: none;
+    margin: 0 auto 60px;
+    padding: 35px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    scroll-margin-top: 25px;
+}
+
+.info-panel[hidden] {
+    display: none;
+}
+
+.info-panel h2 {
+    margin: 8px 0 15px;
+}
+
+.info-panel h3 {
+    margin-top: 18px;
+}
+
+.info-panel p,
+.info-panel li {
+    color: #656963;
+}
+
+.info-panel ul {
+    padding-left: 22px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    padding: 24px;
+    background: #252b28;
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* Hotel photos: preserve original layout */
+.hotel-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hotel-images img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* FOOD AND CULTURE: identical three-column layout */
+#info-content[data-category="food"],
+#info-content[data-category="culture"] {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* Identical card styling for food and culture */
+#info-content[data-category="food"] .info-card,
+#info-content[data-category="culture"] .info-card {
+    min-width: 0;
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+/* Identical image dimensions for food and culture */
+#info-content[data-category="food"] .info-card-image,
+#info-content[data-category="culture"] .info-card-image {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+}
+
+/* Identical text spacing */
+#info-content[data-category="food"] .info-card-body,
+#info-content[data-category="culture"] .info-card-body {
+    padding: 12px 16px 18px;
+}
+
+#info-content[data-category="food"] .info-card-body h3,
+#info-content[data-category="culture"] .info-card-body h3 {
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+
+#info-content[data-category="food"] .info-card-body p,
+#info-content[data-category="culture"] .info-card-body p {
+    font-size: 13px;
+}
+
+/* Tablet screens */
+@media (max-width: 900px) {
+    .info-panel {
+        width: 96%;
+        padding: 25px;
+    }
+
+    #info-content[data-category="food"],
+    #info-content[data-category="culture"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    #info-content[data-category="food"] .info-card-image,
+    #info-content[data-category="culture"] .info-card-image {
+        height: 260px;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+    .hero {
+        height: 48vh;
+        min-height: 300px;
+        margin: 12px 12px 0;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .category-button {
+        min-height: 85px;
+        font-size: 12px;
+    }
+
+    .button-icon {
+        font-size: 23px;
+    }
+
+    .welcome {
+        padding: 45px 5px;
+    }
+
+    .info-panel {
+        width: 94%;
+        padding: 25px 18px;
+        margin-bottom: 40px;
+    }
+
+    #info-content[data-category="food"],
+    #info-content[data-category="culture"] {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    #info-content[data-category="food"] .info-card-image,
+    #info-content[data-category="culture"] .info-card-image {
+        height: 280px;
+    }
+}
+
+/* Contact Form */
+.contact-section {
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 35px;
+    text-align: center;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.contact-section h2 {
+    margin: 8px 0 12px;
+    font-size: clamp(25px, 3vw, 36px);
+}
+
+.contact-description {
+    max-width: 580px;
+    margin: 0 auto 25px;
+    color: var(--muted);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-form label {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 1px solid var(--accent);
+    border-color: var(--accent);
+}
+
+.contact-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.contact-form .submit-btn {
+    align-self: flex-start;
+    margin-top: 10px;
+    padding: 11px 24px;
+    color: white;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.contact-form .submit-btn:hover {
+    color: var(--accent);
+    background: white;
+}
+
+.contact-form .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.contact-form .contact-status {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: normal;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .contact-section {
+        width: 94%;
+        padding: 25px 18px;
+        margin-bottom: 40px;
+    }
+
+    .contact-form .submit-btn {
+        width: 100%;
+    }
+}
+#contact-form select,
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#contact-form select {
+    height: 47px;
+    padding: 0 14px;
+    border: 1px solid #e4dfd8;
+    border-radius: 6px;
+    background-color: #fcfbf9;
+    color: #333;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
